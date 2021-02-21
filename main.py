@@ -1,38 +1,20 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, request, jsonify
 import subprocess
 app = Flask(__name__)
 
-s = subprocess.run('cd', shell=True, capture_output=True).stdout.decode() + "$ "
 
-
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def home():
-    return render_template('index.html', content=s)
+    if(request.method == 'POST'):
+        jsn = request.get_json()
+        cmd = jsn['cmd']
+        subproces = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT).stdout
+        s = subproces.decode('utf-8')
 
-
-@app.route('/cmd', methods=['POST', 'GET'])
-def chk():
-    global s
-    a = request.form['inp']
-    if a == "cls":
-        s = subprocess.run('cd', shell=True, capture_output=True).stdout.decode() + "$ "
-        return redirect('/')
-    s += a
-    return redirect(url_for('cmd', name=a))
-
-
-@app.route('/cmd/<name>')
-def cmd(name):
-    global s
-    c = subprocess.run(name, shell=True, capture_output=True).stdout.decode()
-
-    if c == "":
-        c = subprocess.run(name, shell=True, capture_output=True).stderr.decode()
-
-    cd = subprocess.run('cd', shell=True, capture_output=True).stdout.decode()
-    s += "\n" + c + "\n\n" + cd + "$ "
-    return render_template('index.html', content=s)
-
+        return jsonify({"out": s})
+    else:
+        return render_template('index.html')
+    
 
 app.run()
 
