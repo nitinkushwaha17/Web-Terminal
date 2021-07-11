@@ -5,17 +5,25 @@
 }
 
 body{
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-image: url(wallpaper.jpg);
     background-position: center;
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .window{
+    display: flex;
+    flex-direction: column;
     height: calc(100vh - 40px);
-    margin: 20px 50px;
+    width: 85vw;
+    /* margin: 20px 50px; */
     border: 2px solid lightgrey;
     border-radius: 5px;
-    position: relative;
     box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.5);
 }
 
@@ -48,6 +56,48 @@ h1{
     background-color: red;
 }
 
+.ctab, .tabs{
+    display: flex;
+}
+
+.tabs{
+    overflow-x: scroll;
+}
+
+.tab, #plus{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* padding: 5px; */
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+}
+
+.active{
+    background-color: rgb(65, 65, 65);
+}
+
+.tab p{
+    font-size: 20px;
+    padding: 0 15px 0 10px;
+    margin: 10px 0;
+}
+
+span{
+    padding: 5px;
+}
+
+span.plus{
+    margin: 5px;
+    font-size: 20px;
+}
+
+span:hover{
+    cursor: pointer;
+}
 pre{
     font-size: 15px;
     color: white;
@@ -55,21 +105,21 @@ pre{
 }
 
 .box{
-    height: 80vh;
-    padding: 20px;
+    height: 700px;
     overflow: scroll;
+    padding: 20px;
     background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
 }
 
 input{
-    position: absolute;
+    /* position: absolute;
     bottom: 0;
-    width: 100%;
+    width: 100%; */
     outline: none;
     color: white;
     background-color: rgba(0, 0, 0);
-    backface-visibility: hidden;
+    /* backface-visibility: hidden; */
     padding: 20px;
     caret-color: lawngreen;
     font-size: 20px;
@@ -83,7 +133,7 @@ input{
 
 @media screen and (max-width: 768px){
     .window{
-        margin: 20px;
+        /* margin: 20px; */
     }
 }
 
