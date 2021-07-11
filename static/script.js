@@ -5,7 +5,7 @@
     let n = [];
     let cd;
 
-    const url = process.env.url || 'http://127.0.0.1:5000/';
+    const url = 'https://web-terminal-app.herokuapp.com/';
 
     var s = "";
     req("cd");
