@@ -1,4 +1,6 @@
+_pycache_/
 .idea
+env/
 doc.txt
 tempCodeRunnerFile.py
 new
