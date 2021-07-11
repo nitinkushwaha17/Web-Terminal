@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
-    if(request.method == 'POST'):
+    if request.method == 'POST':
         jsn = request.get_json()
         cmd = jsn['cmd']
         subproces = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT).stdout
@@ -14,7 +14,5 @@ def home():
         return jsonify({"out": s})
     else:
         return render_template('index.html')
-    
 
 app.run()
-
