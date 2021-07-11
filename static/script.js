@@ -5,7 +5,7 @@
     let n = [];
     let cd;
 
-    const url = 'http://127.0.0.1:5000/';
+    const url = process.env.url || 'http://127.0.0.1:5000/';
 
     var s = "";
     req("cd");
